@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050505">
+  <meta name="description" content="David Tarver's IT 4403 Milestone 3 Open Library single-page application.">
+  <title>Book Search | Milestone 3 | David Tarver</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- jQuery is the only library used by this assignment. -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="https://dtarver.com/" aria-label="David Tarver course homepage">DAVID TARVER <span>/ M3</span></a>
+      <nav aria-label="Primary navigation">
+        <a class="active" href="#searchSection">Search</a>
+        <a href="#collectionSection">Collection</a>
+        <a href="https://dtarver.com/milestone2/">Milestone 2</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero" aria-labelledby="mainHeading">
+      <p class="kicker">Open Library API / Milestone 3</p>
+      <h1 id="mainHeading">Find a book<span class="accent">.</span></h1>
+      <p class="hero-copy">Search the Open Library catalog, browse the results, and inspect any book without leaving this page. Discover more from the science fiction collection below.</p>
+      <div class="hero-tags" aria-label="Project features">
+        <span>LIVE OPEN LIBRARY DATA</span>
+        <span>JQUERY AJAX</span>
+        <span>ONE-PAGE APPLICATION</span>
+      </div>
+    </section>
+
+    <section id="searchSection" class="search-panel" aria-labelledby="searchHeading">
+      <div class="panel-heading">
+        <div>
+          <p class="kicker">01 / Explore</p>
+          <h2 id="searchHeading">Book Search</h2>
+        </div>
+        <span class="section-note">Search by title or keyword</span>
+      </div>
+      <form id="searchForm" novalidate>
+        <label for="searchInput" class="field-label">Search terms</label>
+        <div class="search-row">
+          <input type="search" id="searchInput" name="q" placeholder="Try: Dune, programming, networking..." autocomplete="off" maxlength="150" required>
+          <button type="submit" id="searchButton">Search <span aria-hidden="true">→</span></button>
+        </div>
+      </form>
+      <p class="field-hint">Up to 50 matches are available, displayed 10 at a time.</p>
+    </section>
+
+    <div id="searchMessage" class="message" role="status" aria-live="polite">Enter a keyword above to search Open Library.</div>
+
+    <div class="workspace">
+      <section id="resultsSection" class="results-section" aria-labelledby="resultsHeading" aria-busy="false">
+        <div class="section-bar">
+          <div>
+            <p class="kicker">02 / Results</p>
+            <h2 id="resultsHeading">Search Results</h2>
+          </div>
+          <p id="resultSummary" class="section-note" aria-live="polite">Your matches will appear here.</p>
+        </div>
+        <div id="resultsGrid" class="results-grid" aria-live="polite">
+          <div class="empty-state"><span class="empty-symbol" aria-hidden="true">⌕</span><strong>Ready when you are.</strong><p>Use the search box to find your next book.</p></div>
+        </div>
+        <nav id="paginationRegion" class="pagination" aria-label="Search result pagination" hidden>
+          <button type="button" class="page-arrow" id="previousPage" aria-label="Previous page">← Prev</button>
+          <div id="pageButtons" class="page-buttons"></div>
+          <button type="button" class="page-arrow" id="nextPage" aria-label="Next page">Next →</button>
+          <span id="pageIndicator" class="page-indicator" aria-live="polite"></span>
+        </nav>
+      </section>
+
+      <aside id="detailsSection" class="details-section" aria-labelledby="detailsHeading" aria-busy="false">
+        <div class="section-bar">
+          <div>
+            <p class="kicker">03 / Read more</p>
+            <h2 id="detailsHeading">Book Details</h2>
+          </div>
+        </div>
+        <div id="detailsContent" class="details-content" aria-live="polite">
+          <div class="details-empty"><div class="details-empty-art" aria-hidden="true">↗</div><strong>Select any book</strong><p>Its title, authors, description, subjects, Work ID and cover will load here.</p></div>
+        </div>
+      </aside>
+    </div>
+
+    <section id="collectionSection" class="collection-section" aria-labelledby="collectionHeading" aria-busy="true">
+      <div class="collection-intro">
+        <div>
+          <p class="kicker">04 / Discover</p>
+          <h2 id="collectionHeading">Science Fiction<span class="accent">.</span></h2>
+          <p>Explore a live collection from the Open Library <strong>science fiction</strong> subject. Choose a cover to view its details above, independently of your search.</p>
+        </div>
+        <a class="text-link" href="https://openlibrary.org/subjects/science_fiction" target="_blank" rel="noopener noreferrer">View subject on Open Library ↗</a>
+      </div>
+      <div id="collectionMessage" class="message" role="status" aria-live="polite">Loading the science fiction collection…</div>
+      <div id="collectionGrid" class="collection-grid" aria-live="polite"></div>
+      <button type="button" id="retryCollection" class="secondary-button" hidden>Retry collection request</button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <span>IT 4403 — Advanced Web and Mobile Applications</span>
+      <span>© 2026 David Tarver</span>
+    </div>
+  </footer>
+
+  <noscript><div class="noscript-message">JavaScript must be enabled to use the Open Library search and collection.</div></noscript>
+</body>
+</html>
